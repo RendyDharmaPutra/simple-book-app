@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function Dashboard(): JSX.Element {
   return (
     <div className="p-4 lg:p-5 xl:p-6 flex flex-col justify-center items-center bg-page">
-      <section className="p-4 lg:p-5 xl:p-6 flex flex-col gap-6 w-full md:w-[46rem] lg:w-[65rem] rounded-2xl bg-white">
+      <section className="p-4 lg:p-5 xl:p-6 flex flex-col gap-6 w-full rounded-2xl bg-white">
         <h1 className="font-semibold text-grey-900 text-xl lg:text-2xl">
           Daftar Buku
         </h1>
@@ -17,7 +17,7 @@ export default function Dashboard(): JSX.Element {
             />
             <button
               type="submit"
-              className="px-4 py-2 min-h-[2.5rem] text-center font-semibold text-white outline-none rounded-xl bg-primary hover:brightness-90 active:brightness-100 duration-200"
+              className="flex flex-row justify-center items-center min-h-[2.5rem] btn-primary"
             >
               <svg
                 className="w-4 h-4"
@@ -31,10 +31,11 @@ export default function Dashboard(): JSX.Element {
               </svg>
             </button>
           </div>
-          <Link href={"/add"} className="w-full md:w-[8.5rem]">
-            <button className="px-4 py-2 w-full md:w-[8.5rem] min-h-[2.5rem] text-center text-white rounded-xl bg-primary">
-              Tambah Buku
-            </button>
+          <Link
+            href={"/add"}
+            className="w-full md:w-[9rem] min-h-[2.5rem] btn-primary"
+          >
+            Tambah Buku
           </Link>
         </section>
         <Table />

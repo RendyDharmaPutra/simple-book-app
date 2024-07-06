@@ -6,4 +6,20 @@
     .layout {
         @apply p-4 lg:p-5 xl:p-6;
     }
+
+    .tbutton {
+        @apply mr-2 text-sm antialiased font-medium leading-normal;
+    }
+
+    .tcol {
+        @apply p-4 border-b border-blue-gray-50;
+    }
+
+    .btn {
+        @apply px-4 py-2 text-center outline-none rounded-xl;
+    }
+
+    .btn-primary {
+        @apply  btn text-white bg-primary hover:brightness-90 active:brightness-100 duration-200;
+    }
 }

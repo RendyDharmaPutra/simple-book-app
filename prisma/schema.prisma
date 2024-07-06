@@ -9,6 +9,37 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+}
+
+model Category {
+  idCategory   Int    @id @default(autoincrement())
+  nameCategory String @db.VarChar(20)
+  book         Book[]
+}
+
+model Writer {
+  idWriter Int    @id @default(autoincrement())
+  name     String @db.VarChar(20)
+  book     Book[]
+}
+
+model Publisher {
+  idPublisher Int    @id @default(autoincrement())
+  name        String @db.VarChar(20)
+  book        Book[]
+}
+
+model Book {
+  idBook      Int       @id @default(autoincrement())
+  title       String    @db.VarChar(50)
+  year        Int
+  categoryId  Int
+  writerId    Int
+  publisherId Int
+  category    Category  @relation(fields: [categoryId], references: [idCategory])
+  writer      Writer    @relation(fields: [writerId], references: [idWriter])
+  publisher   Publisher @relation(fields: [publisherId], references: [idPublisher])
 }

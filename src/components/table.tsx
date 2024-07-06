@@ -1,8 +1,11 @@
+import { getBooks } from "@/utils/db";
 import Link from "next/link";
 
-export default function Table(): JSX.Element {
+export default async function Table(): Promise<JSX.Element> {
+  const books: book[] = await getBooks();
+
   return (
-    <div className="relative flex flex-col w-full max-h-[40rem] overflow-x-scroll text-gray-800 bg-zinc-50 shadow-md">
+    <div className="relative flex flex-col w-full max-h-[30rem] overflow-x-scroll text-gray-800 bg-zinc-50 shadow-md">
       <table className="w-full min-w-max text-left table-auto md:table-fixed">
         <thead>
           <tr>
@@ -15,46 +18,16 @@ export default function Table(): JSX.Element {
           </tr>
         </thead>
         <tbody>
-          <TBody
-            idBook={1}
-            title="Harry Potter: and the chamber of secrets"
-            writer="JK.Rowling"
-            publisher="Airlangga"
-            category="Fantasy"
-            year={2000}
-          />
-          <TBody
-            idBook={1}
-            title="Harry Potter"
-            writer="JK.Rowling"
-            publisher="Airlangga"
-            category="Fantasy"
-            year={2000}
-          />
-          <TBody
-            idBook={1}
-            title="Harry Potter"
-            writer="JK.Rowling"
-            publisher="Airlangga"
-            category="Fantasy"
-            year={2000}
-          />
-          <TBody
-            idBook={1}
-            title="Harry Potter"
-            writer="JK.Rowling"
-            publisher="Airlangga"
-            category="Fantasy"
-            year={2000}
-          />
-          <TBody
-            idBook={1}
-            title="Harry Potter"
-            writer="JK.Rowling"
-            publisher="Airlangga"
-            category="Fantasy"
-            year={2000}
-          />
+          {books.map((book) => (
+            <TBody
+              idBook={book.idBook}
+              title={book.title}
+              writer={book.writer.name}
+              publisher={book.publisher.name}
+              category={book.category.nameCategory}
+              year={book.year}
+            />
+          ))}
         </tbody>
       </table>
     </div>
@@ -78,7 +51,7 @@ function TBody({
   publisher,
   category,
   year,
-}: books): JSX.Element {
+}: tableBody): JSX.Element {
   return (
     <tr>
       <TCol content={title} />
