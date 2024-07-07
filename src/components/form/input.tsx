@@ -12,7 +12,7 @@ export default function Input({
   data: foreign[] | null;
 }): JSX.Element {
   return (
-    <div className={`flex flex-col gap-1 w-full md:w-[24rem]`}>
+    <div key={name} className={`flex flex-col gap-1 w-full md:w-[24rem]`}>
       <label htmlFor={name} className="text-gray-800">
         {label}
       </label>

@@ -13,15 +13,10 @@ export default async function AddPage(): Promise<JSX.Element> {
       <div className="row-section flex-wrap gap-6 md:gap-4">
         <Input name="title" label="Judul Buku" type="text" data={null} />
         <Input name="year" label="Tahun Terbit" type="text" data={null} />
-        <Input
-          name="writer"
-          label="Nama Penulis"
-          type="select"
-          data={writers}
-        />
+        <Input name="writer" label="Penulis" type="select" data={writers} />
         <Input
           name="publisher"
-          label="Nama Penerbit"
+          label="Penerbit"
           type="select"
           data={publishers}
         />

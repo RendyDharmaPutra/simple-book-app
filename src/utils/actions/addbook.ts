@@ -1,13 +1,20 @@
 'use server'
 
+import { revalidatePath } from "next/cache";
+import { insertBook } from "../db";
+
 export default async function addBook(formData: FormData) {
-    const book = {
-        title: formData.get('title'),
-        year: formData.get('year'),
-        writer: formData.get('writer'),
-        publisher: formData.get('publisher'),
-        category: formData.get('category'),
+    const book: bookData = {
+        title: String(formData.get('title')),
+        year: Number(formData.get('year')),
+        writerId: Number(formData.get('writer')),
+        publisherId: Number(formData.get('publisher')),
+        categoryId: Number(formData.get('category')),
     }
 
-    console.log(book);
+
+    
+    const result: bookResult = await insertBook(book);
+    revalidatePath('/');
+
 }

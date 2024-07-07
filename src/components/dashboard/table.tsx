@@ -1,4 +1,5 @@
-import { getBooks } from "@/utils/db";
+import deleteBookAction from "@/utils/actions/deleteBook";
+import { deleteBook, getBooks } from "@/utils/db";
 import Link from "next/link";
 
 export default async function Table(): Promise<JSX.Element> {
@@ -20,6 +21,7 @@ export default async function Table(): Promise<JSX.Element> {
         <tbody>
           {books.map((book) => (
             <TBody
+              key={book.id}
               idBook={book.id}
               title={book.title}
               writer={book.writer.name}
@@ -63,7 +65,13 @@ function TBody({
         <Link href={`/${idBook}`} className="mr-2 tbutton text-primary">
           Ubah
         </Link>
-        <button className="ml-2 tbutton text-danger">Hapus</button>
+        <form
+          action={deleteBookAction}
+          className="ml-2 tbutton inline text-danger"
+        >
+          <input id="idBook" name={"idBook"} value={idBook} type="hidden" />
+          <button type="submit">Hapus</button>
+        </form>
       </td>
     </tr>
   );

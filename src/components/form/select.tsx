@@ -8,12 +8,23 @@ export default function Select({
   datas: foreign[];
 }) {
   return (
-    <select required id={name} name={name} className="w-full input-primary">
-      <option value="" disabled>
-        {label}
-      </option>
+    <select
+      required
+      key={name}
+      // defaultValue={"placeholder"}
+      id={name}
+      name={name}
+      className="w-full input-primary"
+    >
+      {/* <option value="placeholder" disabled>
+        Nama {label}
+      </option> */}
       {datas.map((data) => {
-        return <option value={data.id}>{data.name}</option>;
+        return (
+          <option key={data.id} value={data.id}>
+            {data.name}
+          </option>
+        );
       })}
     </select>
   );

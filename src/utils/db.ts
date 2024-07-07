@@ -30,6 +30,30 @@ export async function getBooks(): Promise<book[]> {
     return books;
 }
 
+export async function insertBook({ title, year, publisherId, writerId, categoryId }: bookData): Promise<bookResult> {
+    const book: bookResult = await prisma.book.create({
+        data: {
+            title,
+            year,
+            publisherId,
+            writerId,
+            categoryId,
+        }
+    })
+
+    return book;
+}
+
+export async function deleteBook(id: number): Promise<bookResult> {
+    const book: bookResult = await prisma.book.delete({
+        where: {
+            id
+        }
+    })
+
+    return book;
+}
+
 export async function getCategories(): Promise<foreign[]> {
     const categories: foreign[] = await prisma.category.findMany({
         orderBy: {

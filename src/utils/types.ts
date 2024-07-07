@@ -22,6 +22,23 @@ interface book {
     year: number;
 }
 
+interface bookData {
+    title: string;
+    year: number;
+    categoryId: number;
+    writerId: number;
+    publisherId: number;
+}
+
+interface bookResult {
+    id: number;
+    title: string;
+    year: number;
+    categoryId: number;
+    writerId: number;
+    publisherId: number;
+}
+
 interface foreign {
     id: number;
     name: string;
