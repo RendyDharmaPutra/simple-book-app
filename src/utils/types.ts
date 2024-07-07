@@ -8,7 +8,7 @@ interface tableBody {
 }
 
 interface book {
-    idBook: number;
+    id: number;
     title: string;
     writer: {
         name: string;
@@ -17,7 +17,12 @@ interface book {
         name: string;
     };
     category: {
-        nameCategory: string;
+        name: string;
     };
     year: number;
+}
+
+interface foreign {
+    id: number;
+    name: string;
 }

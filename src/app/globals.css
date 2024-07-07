@@ -24,7 +24,7 @@
 	}
 
 	.input-primary {
-		@apply px-3 py-2 outline-none rounded-xl border border-gray-300 focus:border-secondary bg-white hover:bg-gray-200 focus:bg-white duration-200;
+		@apply px-3 py-2 text-gray-600 outline-none rounded-xl border border-gray-300 focus:border-secondary bg-white hover:bg-gray-200 focus:bg-white duration-200;
 	}
 
 	.tcol {

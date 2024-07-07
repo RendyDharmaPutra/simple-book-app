@@ -1,16 +1,32 @@
+import Select from "./select";
+
 export default function Input({
-	name,
-	type,
+  name,
+  label,
+  type,
+  data,
 }: {
-	name: string;
-	type: string;
+  name: string;
+  label: string;
+  type: string;
+  data: foreign[] | null;
 }): JSX.Element {
-	return (
-		<div className="flex flex-col gap-1 w-full md:w-[24rem]">
-			<label htmlFor={name} className="">
-				{name}
-			</label>
-			<input id={name} type={type} className="w-full input-primary" />
-		</div>
-	);
+  return (
+    <div className={`flex flex-col gap-1 w-full md:w-[24rem]`}>
+      <label htmlFor={name} className="text-gray-800">
+        {label}
+      </label>
+      {data === null ? (
+        <input
+          required
+          id={name}
+          name={name}
+          type={type}
+          className="w-full input-primary"
+        />
+      ) : (
+        <Select label={label} name={name} datas={data!} />
+      )}
+    </div>
+  );
 }

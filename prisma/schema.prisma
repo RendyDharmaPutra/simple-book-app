@@ -15,31 +15,31 @@ datasource db {
 }
 
 model Category {
-  idCategory   Int    @id @default(autoincrement())
-  nameCategory String @db.VarChar(20)
-  book         Book[]
+  id   Int    @id @default(autoincrement())
+  name String @db.VarChar(20)
+  book Book[]
 }
 
 model Writer {
-  idWriter Int    @id @default(autoincrement())
-  name     String @db.VarChar(20)
-  book     Book[]
+  id   Int    @id @default(autoincrement())
+  name String @db.VarChar(20)
+  book Book[]
 }
 
 model Publisher {
-  idPublisher Int    @id @default(autoincrement())
-  name        String @db.VarChar(20)
-  book        Book[]
+  id   Int    @id @default(autoincrement())
+  name String @db.VarChar(20)
+  book Book[]
 }
 
 model Book {
-  idBook      Int       @id @default(autoincrement())
+  id          Int       @id @default(autoincrement())
   title       String    @db.VarChar(50)
   year        Int
   categoryId  Int
   writerId    Int
   publisherId Int
-  category    Category  @relation(fields: [categoryId], references: [idCategory])
-  writer      Writer    @relation(fields: [writerId], references: [idWriter])
-  publisher   Publisher @relation(fields: [publisherId], references: [idPublisher])
+  category    Category  @relation(fields: [categoryId], references: [id])
+  writer      Writer    @relation(fields: [writerId], references: [id])
+  publisher   Publisher @relation(fields: [publisherId], references: [id])
 }
