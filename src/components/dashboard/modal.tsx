@@ -1,6 +1,5 @@
 import deleteBookAction from "@/utils/actions/deleteBook";
 import { Dispatch, SetStateAction } from "react";
-import { useFormStatus } from "react-dom";
 import FormDeleteButton from "./button";
 
 export default function Modal({

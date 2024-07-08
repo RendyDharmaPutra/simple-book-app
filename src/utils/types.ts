@@ -22,12 +22,31 @@ interface book {
     year: number;
 }
 
+interface editBook {
+    id: number;
+    title: string;
+    writer: {
+        id: number;
+    };
+    publisher: {
+        id: number;
+    };
+    category: {
+        id: number;
+    };
+    year: number;
+}
+
 interface bookData {
     title: string;
     year: number;
     categoryId: number;
     writerId: number;
     publisherId: number;
+}
+
+interface bookDataEdit extends bookData {
+    id: number
 }
 
 interface bookResult {

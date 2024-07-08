@@ -7,6 +7,8 @@ import {redirect} from 'next/navigation'
 export default async function deleteBookAction(idBook: number): Promise<void> {
     const result: bookResult = await deleteBook(idBook);
 
+    console.log(result)
+
     result && revalidatePath('/');
     result && redirect('/');
 }

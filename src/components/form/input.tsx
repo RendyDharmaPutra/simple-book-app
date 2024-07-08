@@ -2,12 +2,14 @@ import Select from "./select";
 
 export default function Input({
   name,
+  defaultValue,
   label,
   type,
   data,
 }: {
   name: string;
   label: string;
+  defaultValue: string | number;
   type: string;
   data: foreign[] | null;
 }): JSX.Element {
@@ -22,10 +24,16 @@ export default function Input({
           id={name}
           name={name}
           type={type}
+          defaultValue={defaultValue}
           className="w-full input-primary"
         />
       ) : (
-        <Select label={label} name={name} datas={data!} />
+        <Select
+          defaultValue={defaultValue}
+          label={label}
+          name={name}
+          datas={data!}
+        />
       )}
     </div>
   );

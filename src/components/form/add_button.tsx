@@ -1,6 +1,5 @@
 "use client";
 
-import Dialog from "./dialog";
 import { useFormStatus } from "react-dom";
 
 export default function AddButton(): JSX.Element {
@@ -20,7 +19,6 @@ export default function AddButton(): JSX.Element {
       >
         {pending ? "Menyimpan..." : "Simpan"}
       </button>
-      {pending && <Dialog />}
     </>
   );
 }

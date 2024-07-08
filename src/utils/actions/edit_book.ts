@@ -1,11 +1,12 @@
 'use server'
 
 import { revalidatePath } from "next/cache";
-import { insertBook } from "../db";
+import { editBook, insertBook } from "../db";
 import { redirect } from "next/navigation";
 
-export default async function addBook(formData: FormData): Promise<void> {
-    const book: bookData = {
+export default async function editBookAction(formData: FormData): Promise<void> {
+    const book: bookDataEdit = {
+        id: Number(formData.get('id')),
         title: String(formData.get('title')),
         year: Number(formData.get('year')),
         writerId: Number(formData.get('writer')),
@@ -13,10 +14,8 @@ export default async function addBook(formData: FormData): Promise<void> {
         categoryId: Number(formData.get('category')),
     }
 
-
-    
-    const result: bookResult = await insertBook(book);
+    const result: bookResult = await editBook(book);
     result && revalidatePath('/');
-    // result && redirect('/')
+    result && redirect('/')
 
 }

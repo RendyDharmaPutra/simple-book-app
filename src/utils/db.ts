@@ -36,25 +36,25 @@ export async function getBooks(search: string): Promise<book[]> {
     return books;
 }
 
-export async function getBook(idBook: number): Promise<book | null> {
-    const book: book | null = await prisma.book.findFirst({
+export async function getBook(idBook: number): Promise<editBook | null> {
+    const book: editBook | null = await prisma.book.findFirst({
         select: {
             id: true,
             title: true,
             year: true,
             category: {
                 select: {
-                    name: true
+                    id: true
                 }
             },
             publisher: {
                 select: {
-                    name: true
+                    id: true
                 }
             }, 
             writer: {
                 select: {
-                    name: true
+                    id: true
                 }
             }
         },
@@ -74,6 +74,23 @@ export async function insertBook({ title, year, publisherId, writerId, categoryI
             publisherId,
             writerId,
             categoryId,
+        }
+    })
+
+    return book;
+}
+
+export async function editBook({id, title, year, publisherId, writerId, categoryId }: bookDataEdit): Promise<bookResult> {
+    const book: bookResult = await prisma.book.update({
+        data: {
+            title,
+            year,
+            publisherId,
+            writerId,
+            categoryId,
+        },
+        where: {
+            id
         }
     })
 
