@@ -1,3 +1,4 @@
+import AddButton from "@/components/form/add_button";
 import Input from "@/components/form/input";
 import addBook from "@/utils/actions/addbook";
 import { getCategories, getPublishers, getWriters } from "@/utils/db";
@@ -27,12 +28,7 @@ export default async function AddPage(): Promise<JSX.Element> {
           data={categories}
         />
       </div>
-      <button
-        type="submit"
-        className="self-end w-full md:w-[6rem] h-[2.5rem] btn-primary"
-      >
-        Simpan
-      </button>
+      <AddButton />
     </form>
   );
 }

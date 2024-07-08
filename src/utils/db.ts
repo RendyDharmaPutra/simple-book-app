@@ -1,6 +1,6 @@
 import { prisma } from './prisma';
 
-export async function getBooks(): Promise<book[]> {
+export async function getBooks(search: string): Promise<book[]> {
     const books: book[] = await prisma.book.findMany({
         select: {
             id: true,
@@ -22,12 +22,48 @@ export async function getBooks(): Promise<book[]> {
                 }
             }
         },
+        where: {
+            title: {
+                contains: search,
+                mode: 'insensitive'
+            }
+        },
         orderBy: {
             title: 'asc'
         }
     });
 
     return books;
+}
+
+export async function getBook(idBook: number): Promise<book | null> {
+    const book: book | null = await prisma.book.findFirst({
+        select: {
+            id: true,
+            title: true,
+            year: true,
+            category: {
+                select: {
+                    name: true
+                }
+            },
+            publisher: {
+                select: {
+                    name: true
+                }
+            }, 
+            writer: {
+                select: {
+                    name: true
+                }
+            }
+        },
+        where: {
+            id: idBook,
+        },
+    });
+
+    return book;
 }
 
 export async function insertBook({ title, year, publisherId, writerId, categoryId }: bookData): Promise<bookResult> {

@@ -2,6 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { insertBook } from "../db";
+import { redirect } from "next/navigation";
 
 export default async function addBook(formData: FormData) {
     const book: bookData = {
@@ -15,6 +16,7 @@ export default async function addBook(formData: FormData) {
 
     
     const result: bookResult = await insertBook(book);
-    revalidatePath('/');
+    result && revalidatePath('/');
+    result && redirect('/')
 
 }

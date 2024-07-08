@@ -16,11 +16,11 @@
 	}
 
 	.btn {
-		@apply px-4 py-2 text-center outline-none rounded-xl;
+		@apply px-4 py-2 text-center outline-none rounded-xl duration-200;
 	}
 
 	.btn-primary {
-		@apply btn text-white bg-primary hover:brightness-90 active:brightness-100 duration-200;
+		@apply btn text-white bg-primary hover:brightness-90 active:brightness-100;
 	}
 
 	.input-primary {
@@ -32,7 +32,7 @@
 	}
 
 	.tbutton {
-		@apply text-sm antialiased font-medium leading-normal;
+		@apply text-sm antialiased font-medium leading-normal hover:brightness-50 duration-200;
 	}
 
 	.headline {

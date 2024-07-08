@@ -1,17 +1,34 @@
+"use client";
+
 import Link from "next/link";
+import { useSearchParams, usePathname, useRouter } from "next/navigation";
 
 export default function ActionBar(): JSX.Element {
+  const searchParams = useSearchParams();
+  const search = new URLSearchParams(searchParams);
+  const path: string = usePathname();
+  const { replace } = useRouter();
+
+  const handleSearch = (query: string) => {
+    query ? search.set("search", query) : search.delete("search");
+  };
+
+  const onSearch = () => {
+    replace(`${path}?${search.toString()}`);
+  };
+
   return (
     <section className="row-section md:justify-between gap-4">
       <div className="row-section gap-2">
         <input
-          type="search"
-          id="search"
+          type="text"
           placeholder="Cari Judul Buku"
+          onChange={(e) => handleSearch(e.target.value)}
+          defaultValue={searchParams.get("search")?.toString()}
           className="w-full md:w-[20rem] input-primary"
         />
         <button
-          type="submit"
+          onClick={onSearch}
           className="flex flex-row justify-center items-center min-h-[2.5rem] btn-primary"
         >
           <svg

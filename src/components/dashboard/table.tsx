@@ -1,12 +1,17 @@
-import deleteBookAction from "@/utils/actions/deleteBook";
-import { deleteBook, getBooks } from "@/utils/db";
+// import deleteBookAction from "@/utils/actions/deleteBook";
+import { getBooks } from "@/utils/db";
 import Link from "next/link";
+import DeleteButton from "./delete_button";
 
-export default async function Table(): Promise<JSX.Element> {
-  const books: book[] = await getBooks();
+export default async function Table({
+  search,
+}: {
+  search: string;
+}): Promise<JSX.Element> {
+  const books: book[] = await getBooks(search);
 
   return (
-    <div className="relative flex flex-col w-full max-h-[30rem] overflow-x-scroll text-gray-800 bg-zinc-50 shadow-md">
+    <div className="relative flex flex-col w-full h-[30rem] overflow-x-scroll text-gray-800 bg-zinc-50 shadow-md">
       <table className="w-full min-w-max text-left table-auto md:table-fixed">
         <thead>
           <tr>
@@ -65,13 +70,14 @@ function TBody({
         <Link href={`/${idBook}`} className="mr-2 tbutton text-primary">
           Ubah
         </Link>
-        <form
+        {/* <form
           action={deleteBookAction}
           className="ml-2 tbutton inline text-danger"
         >
           <input id="idBook" name={"idBook"} value={idBook} type="hidden" />
           <button type="submit">Hapus</button>
-        </form>
+        </form> */}
+        <DeleteButton id={idBook} title={title} />
       </td>
     </tr>
   );
