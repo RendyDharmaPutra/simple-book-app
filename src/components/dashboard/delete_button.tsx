@@ -1,29 +1,11 @@
-"use client";
+import { useFormStatus } from "react-dom";
 
-import { useState } from "react";
-import Modal from "./modal";
-
-export default function DeleteButton({
-  id,
-  title,
-}: {
-  id: number;
-  title: string;
-}): JSX.Element {
-  const [show, setShow] = useState<boolean>(false);
+export default function FormDeleteButton(): JSX.Element {
+  const { pending } = useFormStatus();
 
   return (
-    <>
-      <button
-        onClick={() => {
-          setShow(true);
-        }}
-        type="submit"
-        className="ml-2 tbutton inline text-danger"
-      >
-        Hapus
-      </button>
-      <Modal idBook={id} title={title} isOpen={show} setShow={setShow} />
-    </>
+    <button type="submit" disabled={pending} aria-disabled={pending}>
+      {pending ? "Menghapus..." : "Hapus"}
+    </button>
   );
 }
