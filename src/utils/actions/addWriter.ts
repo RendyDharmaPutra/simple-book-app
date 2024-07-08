@@ -15,7 +15,7 @@ export default async function addWriter(formData: FormData): Promise<void> {
 
 	if (search == null) {
 		result = await insertWriter(writer);
-		result && revalidatePath("/");
+		result && revalidatePath("/add");
 		result && redirect("/");
 	} else {
 		null;
